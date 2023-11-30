@@ -1,0 +1,57 @@
+h3 {
+    font-size: 30px;
+}
+
+ion-content {
+    --ion-background-color: #FFFFFF;
+    --ion-text-color: #000000;
+}
+
+ion-header {
+    --ion-background-color: linear-gradient(#F8B400, #FFE300);
+    --ion-text-color: #000000;
+}
+
+.cuadrado {
+    height: 80px;
+    width: 80px;
+    background-color: #000000;
+}
+
+.grid {
+    display: grid;
+    place-items: center;
+}
+
+.grid__content {
+    margin: auto;
+}
+
+.imagen {
+    height: 200px;
+    width: auto;
+}
+
+.shake {
+    animation: shake 0.4s cubic-bezier(0.36, 2.05, 0.46, 0.88) both;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-3px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(3px, 0, 0);
+    }
+}

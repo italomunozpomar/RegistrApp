@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>RegistrApp</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">RegistrApp</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-col>
+        <div class="grid">
+            <div class="grid__content">
+                <img src="../../assets/logo_completo-removebg-preview (1).png" alt="" class="imagen">
+            </div>
+
+        </div>
+        <br><br>
+    </ion-col>
+    <!-- form -->
+    <form [formGroup]="loginForm">
+        <ion-col>
+            <div class="grid">
+                <ion-item [class.shake]="isShaking">
+                    <ion-input label="Email" formControlName="email" name="user" labelPlacement="floating" color="dark" placeholder="" class="mi-ion-input"></ion-input>
+                </ion-item>
+                <br>
+                <div *ngIf="isEmailValid()">
+                    <ion-text *ngIf="errorControl['email']?.errors?.['required']">
+                        Email requerido
+                    </ion-text>
+
+                    <ion-text *ngIf="errorControl['email']?.errors?.['pattern']">
+                        Ingresa Email valido
+                    </ion-text>
+                </div>
+
+                <ion-item [class.shake]="isShaking">
+                    <ion-input label="Contraseña" formControlName="password" name="pw" labelPlacement="floating" color="dark" type="password" value="password"></ion-input>
+                </ion-item>
+                <br>
+                <div *ngIf="isPasswordValid()">
+                    <ion-text *ngIf="errorControl['password']?.errors?.['required']">
+                        Contraseña requerida
+                    </ion-text>
+                    <ion-text *ngIf="errorControl['password']?.errors?.['pattern']">
+                        <p>Ingresa una contraseña válida: </p>
+                        <ul>
+                            <li>Mínimo 8 caracteres</li>
+                            <li>Al menos una letra mayúscula</li>
+                            <li>Al menos un número</li>
+                        </ul>
+                    </ion-text>
+
+                </div>
+                <p *ngIf="errorMensaje" class="mensaje-error" style="color: red;">{{ errorMensaje }}</p>
+            </div>
+
+        </ion-col>
+        <br>
+        <ion-col>
+            <div class="ion-text-center">
+                <ion-button (click)="login()" id="animated-button" color="warning">
+                    Ingresar
+                </ion-button>
+
+            </div>
+        </ion-col>
+        <ion-col>
+            <div class="ion-text-center">
+                <a routerLink="/recuperar" style="color: black;">Recuperar contraseña</a>
+            </div>
+        </ion-col>
+        <ion-col>
+            <div class="ion-text-center">
+                <a routerLink="/register" style="color: black;">Registrate</a>
+            </div>
+        </ion-col>
+
+    </form>
+
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>
+
+<!-- [routerLink]="['/home']" redireccionar a otra pagina -->

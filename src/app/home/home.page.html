@@ -1,0 +1,128 @@
+<ion-header [translucent]="true" >
+    <ion-toolbar>
+        <ion-title>RegistrApp</ion-title>
+        <ion-buttons slot="end" [style.visibility]="estilo">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+    <ion-menu side="end" contentId="main-content" [style.visibility]="estilo">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Menú</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                </ion-avatar>
+                <ion-label class="titulo">{{ nombreUsuario }}</ion-label>
+            </ion-item>
+            <br>
+            <ion-list lines="full">
+                <ion-item>
+                    <ion-label>Datos personales</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Configuración</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Más información</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Notificaciones</ion-label>
+                    <ion-badge color="danger">8</ion-badge>
+                </ion-item>
+                <ion-item >
+                    <ion-button color ="warning" (click)="redirectToCargarApiPage()" >Cargar Api</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+        <ion-footer>
+            <ion-item>
+                <ion-button slot="end" expand="block" (click)="logout()" color="dark">Cerrar sesión</ion-button>
+            </ion-item>
+        </ion-footer>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content" [style.visibility]="estilo">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Menu</ion-title>
+                <ion-buttons slot="end">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+        </ion-content>
+    </div>
+
+    <ion-content [fullscreen]="true" [style.visibility]="estilo">
+        <ion-header collapse="condense">
+            <ion-toolbar>
+                <ion-title size="large">RegistrApp</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-col>
+            <div class="grid">
+                <div class="grid__content2">
+                    <img src="../../assets/Captura_de_pantalla_2023-09-12_223410-removebg-preview.png" alt="">
+                </div>
+            </div>
+        </ion-col>
+
+        <ion-col>
+            <div class="ion-text-center">
+                <h1 class="titulo">¡Bienvenido/a! {{ nombreUsuario }}.</h1>
+            </div>
+        </ion-col>
+
+        <ion-col>
+            <div class="grid">
+                    <ion-card>        
+                        <ion-card-content>
+                            <ion-card-title>Escanea codigo QR</ion-card-title>
+                            <div class="grid">
+                                <div class="grid__content">
+                                    <img src="../../assets/2956744.png" alt="" class="imagen">
+                                    
+                                </div>
+                            <ion-button (click)="abrirCam()">Escanea QR</ion-button>
+                        </div>
+                        </ion-card-content>
+                    </ion-card>
+            </div>
+        </ion-col>
+        <ion-card>
+            <div class="grid">
+                <br>
+            <ion-card-title>Asistencia</ion-card-title>
+
+            <div class="grid">
+                <ion-label>Asignatura:</ion-label>
+                <p>{{ Asignatura }}</p>
+              </div>
+            <p>Fecha: {{ obtenerFecha() }} hora: {{obtenerHora()}}</p>
+            <p>Docente: {{ Docente }}</p>
+            <p>Estado: {{ estadoAsistencia }}</p>
+            <ion-button [disabled]="estadoAsistencia === 'Ausente'" [class.translucent]="estadoAsistencia === 'Ausente'" (click)="AgregarDatos()" >Registrar asistencia</ion-button>
+
+            </div>
+            <br>
+        </ion-card>
+
+    </ion-content>
+    <div id="qrCodeFrame">
+        <div id="horizontalBar"></div>
+        <p id="qrMessage">Escanear código QR válido</p>
+      </div>
+      
+
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+
+    

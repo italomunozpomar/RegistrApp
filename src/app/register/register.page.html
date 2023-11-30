@@ -1,0 +1,89 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button (click)="back()" default-href="#"></ion-back-button>
+        </ion-buttons>
+        <ion-title>RegistrApp</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">RegistrApp</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-col>
+        <div class="grid">
+            <div class="grid__content">
+                <img src="../../assets/logo_completo-removebg-preview (1).png" alt="" class="imagen">
+            </div>
+
+        </div>
+
+        <br><br>
+
+    </ion-col>
+    <form [formGroup]="regForm">
+        <ion-col>
+            <div class="grid">
+                <ion-item [class.shake]="isShaking">
+                    <ion-input formControlName="fullname" label="Nombre" name="" labelPlacement="floating" color="dark" placeholder="" class="mi-ion-input"></ion-input>
+                </ion-item>
+                <br>
+                <div *ngIf="isFullnameValid()">
+                    <ion-text *ngIf="errorControl['fullname']?.errors?.['required']">
+                        Nombre completo necesario
+                    </ion-text>
+                </div>
+
+                <ion-item [class.shake]="isShaking">
+                    <ion-input formControlName="email" label="Email" name="" labelPlacement="floating" color="dark" placeholder="" type="email" class="mi-ion-input"></ion-input>
+                </ion-item>
+                <br>
+                <div *ngIf="isEmailValid()">
+                    <ion-text *ngIf="errorControl['email']?.errors?.['required']">
+                        Email requerido
+                    </ion-text>
+                    <ion-text *ngIf="errorControl['email']?.errors?.['pattern']">
+                        Ingresa Email valido
+                    </ion-text>
+                </div>
+
+                <ion-item [class.shake]="isShaking">
+                    <ion-input formControlName="password" label="Contraseña" name="pw" labelPlacement="floating" color="dark" type="password" value=""></ion-input>
+                </ion-item>
+                <div *ngIf="isPasswordValid()">
+                    <ion-text *ngIf="errorControl['password']?.errors?.['required']">
+                        Contraseña requerida
+                    </ion-text>
+                    <ion-text *ngIf="errorControl['password']?.errors?.['pattern']">
+                        <p>Ingresa una contraseña válida con los siguientes requisitos:</p>
+                        <ul>
+                            <li>Mínimo 8 caracteres</li>
+                            <li>Al menos una letra mayúscula</li>
+                            <li>Al menos un número</li>
+                        </ul>
+                    </ion-text>
+                </div>
+                <br>
+                <ion-item [class.shake]="isShaking">
+                    <ion-input formControlName="confirmPassword" label="Repetir Contraseña" labelPlacement="floating" color="dark" type="password" value=""></ion-input>
+                </ion-item>
+                
+            </div>
+        </ion-col>
+        <br>
+        <ion-col>
+            <div class="ion-text-center">
+                <ion-button id="animated-button" color="warning" (click)="signUp()">
+                    Registrarse
+                </ion-button>
+            </div>
+        </ion-col>
+    </form>
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>
